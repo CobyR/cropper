@@ -1,1 +1,19 @@
 G5 Resizer
+
+This is a sample application demonstrating using Paperclip and JCrop to
+allow a user to upload and modify an image, and then recrop as needed.
+
+This assumes you are using RVM.
+
+It was created using rails 3.0.3 and Ruby 1.9.2
+
+Clone the repository.
+
+change to the directory
+do gem install bundler
+do bundle install
+do rackup
+
+hit localhost:9292 and have fun.
+
+Sorry this was a spike, tests are non-existant
