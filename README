@@ -1,4 +1,4 @@
-G5 Resizer
+G5 Cropper
 
 This is a sample application demonstrating using Paperclip and JCrop to
 allow a user to upload and modify an image, and then recrop as needed.
