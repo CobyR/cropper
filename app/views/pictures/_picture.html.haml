@@ -1,0 +1,13 @@
+.grid_6
+  =picture.image_file_name
+  %br
+  =link_to image_tag(picture.image.url(:small)), picture_path(picture)
+.grid_3
+  =number_to_human_size(picture.image_file_size)
+.grid_3
+  =picture.image_updated_at
+.grid_3
+  =link_to 'Crop', crop_picture_path(picture)
+  |
+  =link_to 'Delete', picture_path(picture), :method => 'delete'
+.clear

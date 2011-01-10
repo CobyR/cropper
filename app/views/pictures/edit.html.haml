@@ -1,0 +1,7 @@
+.grid_16
+  %h2
+    Edit Picture
+.clear
+.grid_16.center
+  =image_tag(@picture.image.url(:small))
+=render :partial => 'form'

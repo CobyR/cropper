@@ -1,0 +1,22 @@
+-content_for :title do
+  Crop Image
+-content_for :head do
+  =javascript_include_tag "jquery.Jcrop.min"
+=render :partial => 'crop_js'
+
+.grid_16.center
+  %h2 Image Sizer
+  =link_to_function 'test', nil, "test();"
+.grid_3
+  &nbsp;
+.grid_10
+  =image_tag @picture.image.url(:util), :id => 'cropbox'
+.grid_3
+  &nbsp;
+.clear
+-form_for @picture do |f|
+  -for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
+    .grid_4.center
+      =f.text_field attribute, :id => attribute
+  .grid_16.center
+    =f.submit "Crop"

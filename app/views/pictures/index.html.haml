@@ -1,0 +1,14 @@
+.grid_13
+  %h2
+    Pictures
+.grid_3
+  =link_to 'Add and Crop a Picture', new_picture_path
+.clear
+.grid_6
+  File Name
+.grid_3
+  File Size
+.grid_3
+  Updated At
+.clear
+=render :partial => 'picture', :collection => @pictures

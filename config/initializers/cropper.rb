@@ -1,0 +1,30 @@
+module Paperclip
+  class Cropper < Thumbnail
+    def transformation_command
+      if crop_command
+        cmd = super.join(" ").sub(/ -crop \S+/, '') # remove -crop command
+        puts '--------------------------------------------------'
+        puts cmd
+
+        unless cmd.match(/-resize "600x600"/)
+          cmd = crop_command + cmd # Add new crop command
+          puts '\t--------------------------------------------------'
+          puts "\t#{cmd}"
+          cmd.split(" ")
+        else
+          puts "Skipping because this is the utility image"
+          super
+        end
+      else
+        super
+      end
+    end
+
+    def crop_command
+      target = @attachment.instance
+      if target.cropping?
+        " -crop '#{target.crop_w}x#{target.crop_h}+#{target.crop_x}+#{target.crop_y}' "
+      end
+    end
+  end
+end

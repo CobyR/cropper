@@ -1,0 +1,22 @@
+<script>
+  $(function() {
+    $("#cropbox").Jcrop({
+      onChange: update_crop,
+      onSelect: update_crop,
+      setSelect: [0,0,300,300],
+      aspectRatio: 0
+    });
+  });
+
+  function update_crop(coords) {
+    var ratio = <%= @picture.image_geometry(:original).width %> / <%=@picture.image_geometry(:util).width %>;
+    $("#crop_x").val(Math.round(coords.x * ratio));
+    $("#crop_y").val(Math.round(coords.y * ratio));
+    $("#crop_w").val(Math.round(coords.w * ratio));
+    $("#crop_h").val(Math.round(coords.h * ratio));
+  };
+
+  function test() {
+    aspectRatio: 1
+  };
+</script>

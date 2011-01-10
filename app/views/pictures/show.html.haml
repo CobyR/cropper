@@ -1,0 +1,19 @@
+.grid_16.center
+  =link_to 'Return to ALL pictures', pictures_path
+  |
+  =link_to 'Crop', crop_picture_path(@picture)
+.grid_2.center
+  .caption Small
+  =image_tag(@picture.image.url(:small))
+.grid_6.center
+  .caption Medium
+  =image_tag(@picture.image.url(:medium))
+.grid_8.center
+  .caption Large
+  =image_tag(@picture.image.url(:large))
+.grid_16.center
+  .caption Utility
+  =image_tag(@picture.image.url(:util))
+.grid_16.center
+  .caption Original
+  =image_tag(@picture.image.url(:original))
