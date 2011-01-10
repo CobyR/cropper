@@ -12,8 +12,18 @@ Clone the repository.
 change to the directory
 do gem install bundler
 do bundle install
+do rake db:migrate
 do rackup
 
 hit localhost:9292 and have fun.
 
-Sorry this was a spike, tests are non-existant
+Couple of NOTES:
+
+  Sorry this was a spike, tests are non-existant.
+
+  Due to an issue with Rails 3 and Paperclip not loading Paperclip
+    plugins properly from the lib\paperclip_processor directory, 
+    so rather than trying to hack any of that I threw it in the
+    config/initializers directory instead.
+
+  Paperclip processor is in config/initializer/cropper.rb
