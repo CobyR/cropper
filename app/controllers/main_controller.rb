@@ -1,5 +1,5 @@
 class MainController < ApplicationController
   def index
-    @picture = Picture.new
+    redirect_to crop_picture_path(18)
   end
 end

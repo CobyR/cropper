@@ -17,6 +17,12 @@ ActiveRecord::Schema.define(:version => 20110108030910) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "desired_h"
+    t.integer  "desired_w"
+    t.integer  "crop_x"
+    t.integer  "crop_y"
+    t.integer  "crop_w"
+    t.integer  "crop_h"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -3,20 +3,72 @@
 -content_for :head do
   =javascript_include_tag "jquery.Jcrop.min"
 =render :partial => 'crop_js'
-
-.grid_16.center
-  %h2 Image Sizer
-  =link_to_function 'test', nil, "test();"
-.grid_3
-  &nbsp;
-.grid_10
-  =image_tag @picture.image.url(:util), :id => 'cropbox'
-.grid_3
-  &nbsp;
+.grid_16
+  %h2
+    Step 1 - Upload and crop and image
 .clear
+.grid_16
+  Choose an image from your system that you want to upload and work with.
+=render :partial => 'form'
+
 -form_for @picture do |f|
+  .grid_16
+    %h2 Step 2 - Specify Width and Height
+    Enter the width and height of your desired image, to enable cropping.
+    .form-field
+      =f.label :desired_w, "Width"
+      =f.text_field :desired_w, :size => 5, :id => "desired_w"
+    .form-field
+      =f.label :desired_h, "Height"
+      =f.text_field :desired_h, :size => 5, :id => "desired_h"
+  .clear
+  .grid_16
+    %h2
+      Step 3 - Select the portion of the image you want to use
+  .grid_2
+    &nbsp;
+  .grid_10
+    =image_tag @picture.image.url(:util), :id => 'cropbox'
+
+  .grid_4
+    .caption.center
+      Original
+  .grid_4.center
+    File Size:
+    =number_to_human_size(@picture.image_file_size)
+  .grid_4.center
+    Dimensions:
+    =Paperclip::Geometry.from_file(@picture.image.path(:original)).width
+    x
+    =Paperclip::Geometry.from_file(@picture.image.path(:original)).height
+  .clear
   -for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
     .grid_4.center
-      =f.text_field attribute, :id => attribute
-  .grid_16.center
-    =f.submit "Crop"
+      =f.hidden_field attribute, :id => attribute, :size => 5
+  .grid_16
+    %h2
+      Step 4 -
+      =submit_tag "Apply your changes"
+      and view modified file
+.clear
+.grid_2
+  &nbsp;
+.grid_10.center
+  .center
+    Modified File
+  =image_tag @picture.image.url(:medium), :id => "cropped"
+.grid_4.caption.center
+  Modidied
+.grid_4.center
+  Modified File Size:
+  =number_to_human_size(File.size(@picture.image.path(:medium)))
+.grid_4.center
+  Dimensions:
+  =Paperclip::Geometry.from_file(@picture.image.path(:medium)).width
+  x
+  =Paperclip::Geometry.from_file(@picture.image.path(:medium)).height
+.clear
+.grid_16
+  %h2
+    Step 5 - 
+    =link_to "Save Modified file Locally", @picture.image.url(:medium)

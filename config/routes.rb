@@ -7,6 +7,6 @@ Resizer::Application.routes.draw do
     end
   end
 
-  root :to => "pictures#index"
+  root :to => "main#index"
 
 end

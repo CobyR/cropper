@@ -18,14 +18,7 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(params[:picture])
     if @picture.save
-      flash[:notice] = "Successfully created a picture"
-      if params[:picture][:image].blank?
-        redirect_to @picture
-      else
-        render :action => "crop"
-      end
-    else
-      render :action => "new"
+      redirect_to crop_picture_path(@picture)
     end
   end
 
@@ -38,11 +31,7 @@ class PicturesController < ApplicationController
 
     if @picture.update_attributes(params[:picture])
       flash[:success] = 'The picture was Successfully updated.'
-      if params[:picture][:image].blank?
-        redirect_to pictures_path
-      else
-        render :action => "crop"
-      end
+      render :action => "crop"
     end
   end
 

@@ -1,11 +1,20 @@
 <script>
   $(function() {
-    $("#cropbox").Jcrop({
-      onChange: update_crop,
-      onSelect: update_crop,
-      setSelect: [0,0,300,300],
-      aspectRatio: 0
-    });
+  $("#cropbox").Jcrop({
+    onChange: update_crop,
+    onSelect: update_crop,
+    setSelect: [0,0,0,0],
+    aspectRatio: 1
+  });
+
+  $("#desired_w").observe_field(.5, function() {
+    update_selector();
+  });
+
+  $("#desired_h").observe_field(.5, function() {
+    update_selector();
+  });
+
   });
 
   function update_crop(coords) {
@@ -16,7 +25,16 @@
     $("#crop_h").val(Math.round(coords.h * ratio));
   };
 
-  function test() {
-    aspectRatio: 1
+  function update_selector() {
+    var jcrop = $("#cropbox").data('Jcrop');
+    var desired_w = $("#desired_w").val();
+    var desired_h = $("#desired_h").val();
+    var ratio = gcd(desired_w, desired_h);
+    jcrop.setOptions({aspectRatio: (desired_w/ratio)/(desired_h/ratio)});
+    jcrop.setSelect([0,0,$("#desired_w").val(), $("#desired_h").val()]);
   };
+
+  function gcd(a, b) {
+    return (b == 0) ? a : gcd (b, a%b);
+  }
 </script>
