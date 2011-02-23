@@ -61,14 +61,14 @@
   Modified
 .grid_4.center
   Modified File Size:
-  =number_to_human_size(File.size(@picture.image.path(:medium)))
+  =number_to_human_size(File.size(@picture.image.path(:desired)))
 .grid_4.center
   Dimensions:
-  =Paperclip::Geometry.from_file(@picture.image.path(:medium)).width
+  =Paperclip::Geometry.from_file(@picture.image.path(:desired)).width
   x
-  =Paperclip::Geometry.from_file(@picture.image.path(:medium)).height
+  =Paperclip::Geometry.from_file(@picture.image.path(:desired)).height
 .clear
 .grid_16
   %h2
-    Step 5 - 
-    =link_to "Save Modified file Locally", @picture.image.url(:medium)
+    Step 5 -
+    =link_to "Save Modified file Locally", @picture.image.url(:desired)

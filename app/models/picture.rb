@@ -7,7 +7,8 @@ class Picture < ActiveRecord::Base
       :small  => "100x100#",
       :medium => "300x300",
       :large  => "460x460",
-      :util => "600x600"
+      :util => "600x600",
+      :desired => "700x700"
          },
     :processors => [:cropper]
 
